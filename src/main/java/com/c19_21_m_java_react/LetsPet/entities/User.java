@@ -25,8 +25,8 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "nombre", nullable = false, length = 45)
-	private String nombre;
+	@Column(name = "name", nullable = false, length = 45)
+	private String name;
 	
 	@Column(name = "last_name", nullable = false, length = 45)
 	private String lastName;
@@ -51,12 +51,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getLastName() {

@@ -1,5 +1,6 @@
 package com.c19_21_m_java_react.LetsPet.configuration;
 
+import org.hibernate.validator.internal.util.stereotypes.Lazy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,13 +23,9 @@ import com.c19_21_m_java_react.LetsPet.services.implementation.UserService;
 public class SecurityConfiguration {
 
 	private UserService userService;
-
-	public SecurityConfiguration() {
-		// Constructor vacío
-	}
-
-	@Autowired
-	public void setUserService(UserService userService) {
+	
+	public SecurityConfiguration(UserService userService) {
+		super();
 		this.userService = userService;
 	}
 
@@ -36,19 +33,18 @@ public class SecurityConfiguration {
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		return http.csrf(AbstractHttpConfigurer::disable).cors(AbstractHttpConfigurer::disable)
 				.authorizeHttpRequests(auth -> {
-					auth.requestMatchers("/css/*", "/js/*", "/vendor/bootstrap/css/*", "/vendor/jquery/*",
-							"/vendor/bootstrap/js/*").permitAll();
+					auth.requestMatchers("/","/index","/register").permitAll();
 					auth.anyRequest().authenticated();
 				}).formLogin(login -> {
 					login.loginPage("/login");
 					login.loginProcessingUrl("/loginprocess");
-					login.usernameParameter("username");
+					login.usernameParameter("email");
 					login.passwordParameter("password");
-					login.defaultSuccessUrl("/loginsuccess");
+					login.defaultSuccessUrl("/index");
 					login.permitAll();
 				}).logout(logout -> {
 					logout.logoutUrl("/logout");
-					logout.logoutSuccessUrl("/login");
+					logout.logoutSuccessUrl("/index");
 					logout.permitAll();
 				}).build();
 	}

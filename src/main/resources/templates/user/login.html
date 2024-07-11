@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Grupo 10</title>
+	<!-- Bootstrap core CSS -->
+	<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="/css/modern-business.css" rel="stylesheet" />
+	<link rel="icon" type="image/x-icon" />
+</head>
+
+<body>
+	<!-- Page Content -->
+	<section class="vh-100">
+		<div class="container py-5 h-100">
+			<div class="row d-flex justify-content-center align-items-center h-100">
+
+				<div class="col-12 col-md-8 col-lg-6 col-xl-5">
+					<div class="card shadow-2-strong" style="border-radius: 1rem;">
+						<div class="card-body p-5 text-center">
+							<h1 class="mb-5">Iniciar sesión</h1>
+							<div class="form-outline mb-4">
+								<form th:action="@{/loginprocess}" method="post">
+									<div class="form-outline mb-4">
+										<input type="text" name="email" id="email" placeholder="email"
+											class="form-control form-control-lg" />
+
+									</div>
+									<div class="form-outline mb-4">
+										<input type="password" name="password" id="password" placeholder="Contraseña"
+											class="form-control form-control-lg" />
+
+									</div>
+									<div class="form-outline mb-4">
+
+										<input type="submit" value="Enviar" class="btn btn-primary btn-lg btn-block" />
+									</div>
+								</form>
+							</div>
+							<div th:if="${error != null}" class="alert alert-danger">
+								Nombre de usuario o contraseña incorrecta
+							</div>
+						</div>
+
+					</div>
+
+
+				</div>
+
+			</div>
+		</div>
+
+	</section>
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="/vendor/jquery/jquery.min.js"></script>
+	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

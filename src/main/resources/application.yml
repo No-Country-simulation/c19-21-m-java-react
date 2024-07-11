@@ -11,5 +11,3 @@ spring:
       dialect: org.hibernate.dialect.MySQL5Dialect
   thymeleaf:
     cache: false
-  main:
-    allow-circular-references: true

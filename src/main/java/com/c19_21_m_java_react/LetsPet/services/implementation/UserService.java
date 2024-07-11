@@ -19,12 +19,10 @@ import com.c19_21_m_java_react.LetsPet.repositories.IUserRepository;
 public class UserService implements UserDetailsService {
     
     private final IUserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
 
-    public UserService(IUserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserService(IUserRepository userRepository) {
 		super();
 		this.userRepository = userRepository;
-		this.passwordEncoder = passwordEncoder;
 	}
 
 	@Override
@@ -51,15 +49,6 @@ public class UserService implements UserDetailsService {
     
 
     public void saveOrUpdate(com.c19_21_m_java_react.LetsPet.entities.User user) {
-    	user.setPassword(passwordEncoder.encode(user.getPassword()));
-    	user.setEnabled(true);
-        UserRole userRole = new UserRole();
-        userRole.setUser(user);
-        userRole.setRole("ROLE_USER"); 
-        Set<UserRole> roles = new HashSet<>();
-        roles.add(userRole);
-        user.setUserRoles(roles);
-
     	userRepository.save(user);
     }
    
