@@ -19,7 +19,7 @@ a {
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #f9f9f9;
 }
 
 body {
@@ -32,6 +32,7 @@ body {
 }
 
 h1 {
+  margin: 15vh 0 10vh 0;
   font-size: 3.2em;
   line-height: 1.1;
   color: #1a1a1a;
@@ -71,18 +72,22 @@ button:focus-visible {
 }
 
 /* Menú */
-#sidebar {
+.navbar {
+  background-color: #646cff;
   position: absolute;
   top: 0;
-  width: calc(100% / 2 + 50px);
+/*   width: calc(100% / 2 + 50px); */
+  width: 100%;
+  left: 0;
 }
 
 .menu {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  align-items: center;
   gap: 35px;
   height: 2rem;
-  width: 100%;
+  width: 90%;
   margin-top: 1em;
   padding: 0;
 }
@@ -93,8 +98,9 @@ div #root {
 
 /* Formulario */
 form {
-  background-color: #747bff;
+  background-color: #535bf2;
   border-radius: 1rem;
+  height: 60vh;
 }
 
 .div-form {
@@ -108,35 +114,56 @@ input {
   display: flex;
   width: 30%;
   height: fit-content;
-  background-color: #000000;
+  background-color: #213547;
   border-radius: .5rem;
   padding: .5em;
   justify-content: center;
   align-items: center;
 }
 
-/* Cuidador Img */
+/* Checkbox */
+.checkbox {
+  display: flex;
+  align-items: flex-end;
+  color: #1a1a1a;
+  width: 30%;
+  gap: .5em;
+}  
+
+/* Happy Dogs Imagen */
 .logo {
-  height: 30vh;
+  height: 300px;
   width: 60%;
-  
+  padding: 0;
+}
+
+.logo, .happy-dogs {
+  border-radius: 35px;
 }
 
 /* Buttons */
 .div-btns {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  width: 40%;
+  justify-content: start;
   gap: 1rem;
   padding-bottom: 2rem;
   margin: 0;
 }
 
+#search {
+  margin-left: calc(70% / 2);
+}
+
+
+
 /* Seccion mascotas */
 .container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin: 5% 0 40% 0;
   gap: 2rem;
   object-fit: cover;
+  height: 60vh;
 }
