@@ -14,42 +14,31 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.c19_21_m_java_react.LetsPet.entities.UserRole;
 import com.c19_21_m_java_react.LetsPet.repositories.IUserRepository;
+import com.c19_21_m_java_react.LetsPet.services.IUserService;
 
 @Service("userService")
-public class UserService implements UserDetailsService {
-    
+public class UserService implements IUserService{
+
     private final IUserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(IUserRepository userRepository) {
-		super();
-		this.userRepository = userRepository;
-	}
-
-	@Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        com.c19_21_m_java_react.LetsPet.entities.User user = userRepository.findByEmail(email);
-        if (user == null) {
-            throw new UsernameNotFoundException("User not found with email: " + email);
-        }
-        return buildUser(user, buildGrantedAuthorities(user.getUserRoles()));
+    public UserService(IUserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    private User buildUser(com.c19_21_m_java_react.LetsPet.entities.User user, List<GrantedAuthority> grantedAuthorities) {
-        return new User(user.getEmail(), user.getPassword(), user.isEnabled(), 
-                        true, true, true, grantedAuthorities);
-    }
+    public void saveOrUpdate(com.c19_21_m_java_react.LetsPet.entities.User  user) {
+    	//Encripto contraseña
+        user.setPassword(passwordEncoder.encode(user.getPassword())); 
+        user.setEnabled(true);
+        //Seteo rol como usuario, luego vemos los roles de administrador y cuidador
+        UserRole userRole = new UserRole();
+        userRole.setUser(user);
+        userRole.setRole("ROLE_USER"); 
+        Set<UserRole> roles = new HashSet<>();
+        roles.add(userRole);
+        user.setUserRoles(roles);
 
-    private List<GrantedAuthority> buildGrantedAuthorities(Set<UserRole> userRoles) {
-        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        for (UserRole userRole : userRoles) {
-            grantedAuthorities.add(new SimpleGrantedAuthority(userRole.getRole()));
-        }
-        return new ArrayList<>(grantedAuthorities);
+        userRepository.save(user);
     }
-    
-
-    public void saveOrUpdate(com.c19_21_m_java_react.LetsPet.entities.User user) {
-    	userRepository.save(user);
-    }
-   
 }

@@ -3,12 +3,15 @@ package com.c19_21_m_java_react.LetsPet.repositories;
 import java.io.Serializable;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.c19_21_m_java_react.LetsPet.entities.User;
 
 @Repository("userRepository")
 public interface IUserRepository extends JpaRepository<User, Serializable> {
-
-	User findByEmail(String email);
+	
+	@Query("SELECT u FROM User u JOIN FETCH u.userRoles WHERE u.email = (:email)")
+	User findByEmail(@Param("email") String email);
 }

@@ -1,7 +1,6 @@
 package com.c19_21_m_java_react.LetsPet.configuration;
 
 import org.hibernate.validator.internal.util.stereotypes.Lazy;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.c19_21_m_java_react.LetsPet.services.implementation.CustomUserDetailsService;
 import com.c19_21_m_java_react.LetsPet.services.implementation.UserService;
 
 @Configuration
@@ -22,49 +22,48 @@ import com.c19_21_m_java_react.LetsPet.services.implementation.UserService;
 @EnableMethodSecurity
 public class SecurityConfiguration {
 
-	private UserService userService;
-	
-	public SecurityConfiguration(UserService userService) {
-		super();
-		this.userService = userService;
-	}
+    private final CustomUserDetailsService userDetailsService;
+    
+    public SecurityConfiguration(CustomUserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
 
-	@Bean
-	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		return http.csrf(AbstractHttpConfigurer::disable).cors(AbstractHttpConfigurer::disable)
-				.authorizeHttpRequests(auth -> {
-					auth.requestMatchers("/","/index","/register").permitAll();
-					auth.anyRequest().authenticated();
-				}).formLogin(login -> {
-					login.loginPage("/login");
-					login.loginProcessingUrl("/loginprocess");
-					login.usernameParameter("email");
-					login.passwordParameter("password");
-					login.defaultSuccessUrl("/index");
-					login.permitAll();
-				}).logout(logout -> {
-					logout.logoutUrl("/logout");
-					logout.logoutSuccessUrl("/index");
-					logout.permitAll();
-				}).build();
-	}
+    @Bean
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http.csrf(AbstractHttpConfigurer::disable).cors(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(auth -> {
+                    auth.requestMatchers("/","/index","/register", "/save").permitAll();
+                    auth.anyRequest().authenticated();
+                }).formLogin(login -> {
+                    login.loginPage("/login");
+                    login.loginProcessingUrl("/loginprocess");
+                    login.usernameParameter("email");
+                    login.passwordParameter("password");
+                    login.defaultSuccessUrl("/index");
+                    login.permitAll();
+                }).logout(logout -> {
+                    logout.logoutUrl("/logout");
+                    logout.logoutSuccessUrl("/index", true);
+                    logout.permitAll();
+                }).build();
+    }
 
-	@Bean
-	AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
-			throws Exception {
-		return authenticationConfiguration.getAuthenticationManager();
-	}
+    @Bean
+    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+            throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
+    }
 
-	@Bean
-	DaoAuthenticationProvider authenticationProvider() {
-		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-		provider.setPasswordEncoder(passwordEncoder());
-		provider.setUserDetailsService(userService);
-		return provider;
-	}
+    @Bean
+    DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setPasswordEncoder(passwordEncoder());
+        provider.setUserDetailsService(userDetailsService);
+        return provider;
+    }
 
-	@Bean
-	PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 }

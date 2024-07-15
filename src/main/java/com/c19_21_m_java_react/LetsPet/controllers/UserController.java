@@ -12,25 +12,25 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.c19_21_m_java_react.LetsPet.entities.User;
 import com.c19_21_m_java_react.LetsPet.helpers.ViewRouteHelper;
+import com.c19_21_m_java_react.LetsPet.services.IUserService;
 import com.c19_21_m_java_react.LetsPet.services.implementation.UserService;
-
 
 @Controller
 @RequestMapping
 public class UserController {
 
-	private final UserService userService;
+	private final IUserService userService;
      
-	public UserController(UserService userService) {
+	public UserController(IUserService userService) {
 		super();
 		this.userService = userService;
 	}
 
 	@GetMapping("/register")
     public ModelAndView registerForm() {
-        ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.USER_REGISTER);
-        modelAndView.addObject("user", new User());
-        return modelAndView;
+        ModelAndView mAV = new ModelAndView(ViewRouteHelper.USER_REGISTER);
+        mAV.addObject("user", new User());
+        return mAV;
     }
 	
 	@PostMapping("/save")
