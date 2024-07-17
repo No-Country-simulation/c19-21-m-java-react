@@ -43,7 +43,7 @@ public class SecurityConfiguration {
                     login.permitAll();
                 }).logout(logout -> {
                     logout.logoutUrl("/logout");
-                    logout.logoutSuccessUrl("/index", true);
+                    logout.logoutSuccessUrl("/index");
                     logout.permitAll();
                 }).build();
     }

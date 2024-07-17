@@ -26,6 +26,7 @@ public class UserController {
 		this.userService = userService;
 	}
 
+
 	@GetMapping("/register")
     public ModelAndView registerForm() {
         ModelAndView mAV = new ModelAndView(ViewRouteHelper.USER_REGISTER);

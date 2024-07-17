@@ -15,7 +15,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity 
+@Entity
 @Getter @Setter
 @NoArgsConstructor
 @Table(name="user")
@@ -27,10 +27,10 @@ public class User {
 
 	@Column(name = "name", nullable = false, length = 45)
 	private String name;
-	
+
 	@Column(name = "last_name", nullable = false, length = 45)
 	private String lastName;
-	
+
 	@Column(name = "email", unique = true, nullable = false, length = 45)
 	private String email;
 
@@ -42,6 +42,20 @@ public class User {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private Set<UserRole> userRoles = new HashSet<>();
-	
+
+	public boolean isAdmin() {
+		for (UserRole userRole : userRoles) {
+			if (UserRole.ROLE_ADMIN.equals(userRole.getRole())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void addRole(String role) {
+		UserRole userRole = new UserRole(this, role);
+		userRoles.add(userRole);
+	}
+
 }
 

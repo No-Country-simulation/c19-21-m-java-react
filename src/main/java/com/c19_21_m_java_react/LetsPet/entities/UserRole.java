@@ -19,6 +19,7 @@ import lombok.Setter;
 @Table(name="user_role", uniqueConstraints=@UniqueConstraint(columnNames= {"role", "user_id"}))
 public class UserRole {
 
+	public static final String ROLE_ADMIN = "ADMIN";
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -30,4 +31,8 @@ public class UserRole {
 	@Column(name="role", nullable=false, length=100)
 	private String role;
 
+	public UserRole(User user, String role) {
+		this.user = user;
+		this.role = role;
+	}
 }
