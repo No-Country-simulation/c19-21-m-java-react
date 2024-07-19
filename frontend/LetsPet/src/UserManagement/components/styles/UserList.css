@@ -1,0 +1,26 @@
+.user-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+table {
+    height: 50vh;
+    width: 70vw;
+    background-color: rgb(81, 42, 165);
+    border-radius: 1rem;
+}
+
+th, td, h2 {
+    color: black;
+}
+
+th {
+    border: 1px solid black;
+    border-radius: .6rem .6rem 0 0;
+    text-align: start;
+    padding: .5rem;
+}
