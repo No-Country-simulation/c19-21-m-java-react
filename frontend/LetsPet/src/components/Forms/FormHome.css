@@ -1,0 +1,8 @@
+.form-home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    width: 80%;
+    background-color: black;
+}
