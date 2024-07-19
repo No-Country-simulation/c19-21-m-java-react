@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+frontend/LetsPet/package-lock.json
+frontend/package-lock.json
