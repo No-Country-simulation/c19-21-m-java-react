@@ -1,5 +1,4 @@
-import React from "react";
-import petsLogo from './assets/petsLogo.png'
+import petsLogo from './assets/letspet-png.png'
 import { Link } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react';
 
