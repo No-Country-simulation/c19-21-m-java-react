@@ -28,6 +28,8 @@ public class SecurityConfiguration {
         this.userDetailsService = userDetailsService;
     }
 
+
+
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable).cors(AbstractHttpConfigurer::disable)

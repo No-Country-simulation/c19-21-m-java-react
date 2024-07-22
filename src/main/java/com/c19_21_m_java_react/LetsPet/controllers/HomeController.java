@@ -9,7 +9,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.c19_21_m_java_react.LetsPet.helpers.ViewRouteHelper;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/home")
 public class HomeController {
 	
 	@GetMapping("/index")
