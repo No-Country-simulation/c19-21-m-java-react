@@ -2,11 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Root from './Root.jsx';
 import Home from './pages/home/Home.jsx';
+import './pages/home/Home.css'
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import './index.css'
 import UserSignup from './UserManagement/components/UserSignup.jsx';
 import { StrictMode } from 'react';
 

@@ -1,8 +1,8 @@
 import React from "react";
-import petsLogo from './assets/petsLogo.png'
+import petsLogo from './assets/letspet-png.png';
 import { Link } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react';
-
+import './NavBar.css'
 
 
 const NavBar = () => {
@@ -11,16 +11,18 @@ const NavBar = () => {
 
     return (
         <div className="navbar" id="sidebar">
-            <Link to='/'><img src={petsLogo} alt="Let's Pet Logo" className="letspet-logo" /></Link>
-            <ul style={{display: 'flex', width: '90vw', alignItems: 'center', height: '10vh', margin: '0'}} className="menu">
-                <Link to='/servicios'>Servicios</Link>
-                <Link to='/sobre-nosotros'>Sobre Nosotros</Link>
-                <Link to='/como-funciona'>Cómo funciona?</Link>
+            <img src={petsLogo} alt="Let's Pet Logo" className="letspet-logo" />
+            <span><Link to='/' className="letspet-title">Lets Pet</Link></span>
+            
+            <ul className="menu">
+                <Link className="nav-link" to='/servicios'>Servicios</Link>
+                <Link className="nav-link" to='/sobre-nosotros'>Sobre Nosotros</Link>
+                <Link className="nav-link" to='/como-funciona'>Cómo funciona?</Link>
                 {
                     !isAuthenticated && (
                         <>
-                            <Link to='/iniciar-sesion'>Iniciar sesión</Link>
-                            <Link to='/registrarse'>Registrarse</Link>
+                            <Link className="nav-link" to='/iniciar-sesion'>Iniciar sesión</Link>
+                            <Link className="nav-link" to='/registrarse'>Registrarse</Link>
                         </>
                     )}
                     {

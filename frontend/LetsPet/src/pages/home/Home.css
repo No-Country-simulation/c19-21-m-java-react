@@ -1,28 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  scrollbar-width: none;
+}
+:root {
+  --box-shadow: 0 .2rem 3px #544A48;
+  --clr-bg-dark-default: #382D23;
+  --clr-bg-dark-medium: #694E3F;
+  --clr-bg-dark-light: #A78B68;
 
-
-.home {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  }
   
-h1 {
-  margin: 21vh 0 10vh 0;
-  font-size: 3.2em;
-  line-height: 1.1;
-  color: #1a1a1a;
 }
 
+body {
+  font-family: "Baloo 2", sans-serif;
+  font-weight: bold;
+  font-style: normal;
+  background: url('./assets/home-bg.png') center fixed;
+}
+
+/* // <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 400 to 800 */
+
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+h1 {
+  width: 65%;
+  font-size: 50px;
+  color: var(--clr-bg-dark-default);
+  margin: 20vh 0 5vh;
+}
+
+h2 {
+  margin: 5rem 10rem;
+  color: var(--clr-bg-dark-default);
+  font-size: 40px;
+  font-weight: bolder;
+}
+
+
 button {
+  width: 45%;
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #d2d543;
+  background-color: #D2D500;
   cursor: pointer;
   transition: border-color 0.25s;
   height: min-content;
@@ -48,38 +82,13 @@ button:focus-visible {
   }
 }
 
-/* Menú */
-.navbar {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  background-color: #f2ddb2;
-  position: absolute;
-  top: 0;
-/*   width: calc(100% / 2 + 50px); */
-  width: 100%;
-  left: 0;
-  height: 15vh;
-}
-
-.menu {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 35px;
-  height: 3rem;
-  width: 90%;
-  margin-top: 1em;
-  padding: 0;
-}
-
 /* Formulario */
 .form {
   display: flex;
-  background-color: #f2ddb2;
-  border-radius: 1rem;
-  height: 60vh;
-  width: 60%;
+  background-color: #f7dbad;
+  border-radius: 5rem;
+  width: 70%;
+  box-shadow: var(--box-shadow);
 
 }
 
@@ -87,93 +96,118 @@ button:focus-visible {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  margin: 0;
-  padding-top: 0;
-  gap: 10%;
-}
-
-input {
-  display: flex;
-  width: 70%;
-  height: fit-content;
-  background-color: white;
-  padding: 0;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Checkbox */
-.checkbox {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  color: #1a1a1a;
-  margin: 0;
-  width: 30%;
-  gap: 1rem;
-}  
-
-/* Happy Dogs Imagen */
-.logo {
-  height: 350px;
-  width: 300px;
-  padding: 0;
-  margin: 0;
-}
-
-.logo, .happy-dogs {
-  border-radius: 35px;
-  object-fit: cover;
-}
-
-.letspet-logo {
-  width: 80px;
-  height: 50px;
+  border-radius: 2.5rem;
 }
 
 /* Buttons */
 .div-btns {
   display: flex;
   flex-wrap: wrap;
-  width: 40%;
-  justify-content: start;
+  align-items: center;
+  justify-content: space-around;
+  gap: 2rem;
+  margin-top: 1rem;
+  width: 100%;
+  padding: 0 2.5rem;
+}
+
+button {
+  margin-top: 2rem;
+}
+
+.info-container {
+  display: flex;
+  width: 100%;
   gap: 1rem;
-  padding-bottom: 2rem;
+}
+
+#address {
+  width: 27vw;
+}
+
+input {
+  display: flex;
+  background-color: white;
+  padding: .5rem 0;
+}
+
+.checkbox {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+/* Checkbox */
+.checkbox-subtitle {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  margin: .5rem 0;
+}
+
+.checkbox-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkbox-container input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox-container .perro-pequeño {
+  display: block;
+  width: 100px;
+  height: 100px;
+  background-image: url('./assets/btn-perro-peq.png');
+  object-fit: cover;
+  background-size: cover;
+}
+
+.checkbox-container .perro-mediano {
+  display: block;
+  width: 100px;
+  height: 100px;
+  background-image: url('./assets/btn-perro-med.png');
+  object-fit: cover;
+  background-size: cover;
+}
+
+.checkbox-container .perro-grande {
+  display: block;
+  width: 100px;
+  height: 100px;
+  background-image: url('./assets/btn-perro-grande.png');
+  object-fit: cover;
+  background-size: cover;
+}
+
+h3 {
   margin: 0;
+  font-weight: 600;
+}
+
+/* Happy Dogs Imagen */
+.img-form {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 50vw;
+}
+
+.happy-dog {
+  object-fit: cover;
+  width: 100%;
+  padding: 0;
+}
+
+.letspet-logo {
+  width: 85px;
+  height: 70px;
 }
 
 #search {
-  background-color: #e47432;
-  margin-left: calc(70% / 2);
-}
-
-
-
-/* Seccion mascotas */
-section {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  background-color: #bbc443;
-  width: 100%;
-  height: 70vh;
-  margin-top: 15vh;
-}
-
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50%;
-  margin: 5% 25%;
-  gap: 5rem;
-  object-fit: cover;
-  height: 70vh;
-}
-
-.happy-dogs {
-  width: 100%;
-  height: 400px;
-  align-self: center;
+  color: #E6DCCE;
+  width: 14vw;
+  background-color: #F46C0F;
 }

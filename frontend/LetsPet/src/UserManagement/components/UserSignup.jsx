@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { Form, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import './styles/UserSignup.css'
 import UserService from '../services/UserService'
-import { Link } from 'react-router-dom'
-import Textfield from '@mui/material/TextField';
-import { Button } from '@mui/material'
+import gato from './assets/gato.png'
 
 export const UserSignup = () => {
 
@@ -12,11 +10,11 @@ export const UserSignup = () => {
   const [apellido, setApellido] = useState('')
   const [edad, setEdad] = useState('')
   const navigate = useNavigate();
-  const {id} = useParams();
+  const { id } = useParams();
 
   const saveUser = (e) => {
     e.preventDefault();
-    
+
     const user = {
       name: nombre,
       lastName: apellido,
@@ -45,31 +43,36 @@ export const UserSignup = () => {
     })
   });
 
-/* Identifica el titulo según el id */
-  const title = () => {
-    if (id) {
-    return <h2 className='Actualizar usuario'>Actualizar usuario</h2>
-  } else {
-    return <h2 className='text-center'>Registrar usuario</h2>
-  }
-}
-
   return (
-    <div className='signup-container'>
-      <Form onSubmit={saveUser} className='signup-form'>
-        <h2 className='text-center'>{title()}</h2>
-        <Textfield className='textfield' type="text" placeholder='Nombre' value={nombre} id="filled-basic" label="Nombre" variant="filled" 
-        onChange={(e) => setNombre(e.target.value)}/>
-        <Textfield className='textfield' id='filled-basic' label="Apellido" variant="filled" type="text" placeholder='Apellido' value={apellido} 
-        onChange={(e) => setApellido(e.target.value)}/>
-        <Textfield className='textfield' id='filled-basic' label="Edad" variant="filled" type="number" placeholder='Edad' value={edad} 
-        onChange={(e) => setEdad(e.target.value)}/>
-        <Button type='submit' className='btn btn-success' variant='contained'
-        onClick={(e) => saveUser(e)}>Guardar </Button>
-        &nbsp;&nbsp;
-        <Button className='btn-cancel' href='/' variant='contained' color='error'>Cancelar</Button>
-      </Form>
+    <>
+      <h2 className='register-title'>Registrarse en Lets Pet!</h2>
+    <div className='register-container'>
+      <div className='register-page'>
+        <label className='label-registro' htmlFor="nombre">Nombre
+        <input className='campos-registro' type="text" placeholder='Nombre' />
+        </label>
+        <label className='label-registro' htmlFor="apellido">Apellido
+          <input className='campos-registro' type="text" placeholder='Apellido' />
+        </label>
+        <label className='label-registro' htmlFor="email">Email
+          <input className='campos-registro' type="email" placeholder='Email' />
+        </label>
+        <label className='label-registro' htmlFor="contraseña">Contraseña
+          <input className='campos-registro' type="password" placeholder='Contraseña' />
+        </label>
+        <label className='label-registro' htmlFor="contraseña">Confirmar contraseña
+          <input className='campos-registro' type="password" placeholder='Confirmar contraseña' />
+        </label>
+        <div className='campo-terminos'>
+        <input className='campo-checkbox' type='checkbox' /><label htmlFor="terminos">Acepto los términos y condiciones</label>
+        </div>
+        <button className='btn-registro'>Registrarme</button>
+      </div>
+      <div className='img-container'>
+        <img className="img-gato" src={gato} alt="Gato con lana" />
+      </div>
     </div>
+    </>
   )
 }
 

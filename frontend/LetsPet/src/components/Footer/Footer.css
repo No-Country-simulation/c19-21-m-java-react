@@ -1,0 +1,52 @@
+.footer-container {
+    display: flex;
+    bottom: 0;
+    width: 100vw;
+    background: url('./assets/bg-footer.png') #382D23 no-repeat;
+    background-size: cover;
+    height: 15rem;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 1rem;
+}
+
+.footer-logo {
+    object-fit: contain;
+}
+
+.footer-title {
+    font-size: 40px;
+    font-weight: 700;
+    color: #E6DCCE;
+    margin: 0;
+}
+
+.footer-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: stretch;
+/*     border: 3px solid royalblue; */
+    width: 100%;
+    gap: 1rem;
+}
+
+.col-2 {
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 1rem;
+    font-size: 20px;
+    font-weight: 500;
+    color: #E6DCCE;
+    margin-top: 4rem;
+    line-height: 1.1;
+}
+
+p {
+    overflow: hidden;
+}
