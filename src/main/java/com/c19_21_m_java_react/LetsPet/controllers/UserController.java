@@ -56,7 +56,7 @@ public class UserController {
 	@GetMapping("/loginsuccess")
 	public String loginCheck() {
 
-		return "redirect:/index";
+		return "redirect:/index"; //se podría cambiar a "/service-request" una vez hecho el login.
 	}
 
 }
