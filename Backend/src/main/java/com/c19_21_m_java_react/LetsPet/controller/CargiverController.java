@@ -24,7 +24,7 @@ public class CargiverController {
     @Transactional
     public ResponseEntity<CaregiverDataResponse> caregiverRegister(@RequestBody @Valid RegisterCargiverData registerCargiverData, UriComponentsBuilder uriComponentsBuilder){
         Caregiver caregiver = caregiverRepository.save(new Caregiver(registerCargiverData));
-        CaregiverDataResponse caregiverDataResponse = new CaregiverDataResponse(caregiver.getId(), caregiver.getName(), caregiver.getEmail(), caregiver.getTelephone()
+        CaregiverDataResponse caregiverDataResponse = new CaregiverDataResponse(caregiver.getId(),caregiver.getName(), caregiver.getEmail(), caregiver.getTelephone()
         ,caregiver.getDocument(), new AddressData(caregiver.getAddress().getStreet(), caregiver.getAddress().getCity(), caregiver.getAddress().getDistrict()));
 
         URI url = uriComponentsBuilder.path("/caregiver/{id}").buildAndExpand(caregiver.getId()).toUri();

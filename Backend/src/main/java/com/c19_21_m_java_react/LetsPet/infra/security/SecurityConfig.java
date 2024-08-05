@@ -27,6 +27,9 @@ public class SecurityConfig { //Clase para filtrar iniciales (Endpoints)
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authRequest -> authRequest
                         .requestMatchers("/auth/register").permitAll()
+                        .requestMatchers("/").permitAll()
+                        .requestMatchers("/appointments/new-appointment").permitAll()
+                        .requestMatchers("/appointments/appointments-history").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/auth/login")
